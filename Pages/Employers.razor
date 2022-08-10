@@ -1,0 +1,36 @@
+@page "/employers"
+@inject BlazorCRUDApp.Data.IEmployersService EmployersService;
+
+<h3>Employers</h3>
+<br/>
+<table>
+    <head>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+        </tr>
+    </head>
+    <tbody>
+        @foreach (var e in employers)
+        {
+            <tr>
+            <td>@e.Id</td>
+            <td>@e.Name</td>
+        </tr>
+        }
+    </tbody>
+
+
+</table>
+@code{
+        private List<BlazorCRUDApp.Data.Emmployee> employers;
+        protected override void OnInitialized()
+        {
+            employers = EmployersService.GetEmmployees();
+        }
+
+}
+#pragma warning restore 1998
+#nullable restore
+#line 5 "d:/Daniela/Top Gun Lab .NET/CRUD-webAplication/Pages/Employers.razor"
+
