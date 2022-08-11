@@ -1,0 +1,52 @@
+@page "/starters"
+@inject BlazorCRUDApp.Data.IStartersService StartersService;
+
+<h3>Starters</h3>
+<br/>
+<a href="starters/0">
+    Add
+</a>
+<table class="table">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var strs in startersList)
+        {
+            <tr>
+            <td>@strs.Id</td>
+            <td>@strs.Name</td>
+            <td>@strs.Price</td>
+            <td>
+                <a href="starters/@strs.Id">
+                Edit
+                </a>
+            </td>
+            <td>
+                <button class="btn btn-primary" @onclick=@(e => OnDelete(strs.Id))>Delete</button>
+            </td>
+        </tr>
+        }
+    </tbody>
+
+
+</table>
+@code{
+        private List<BlazorCRUDApp.Data.Starters> startersList;
+        protected override void OnInitialized()
+        {
+            startersList = StartersService.GetStarters();
+        }
+        private void OnDelete(Guid id){
+            StartersService.DeleteStarters(id);
+        }
+        
+
+}
+
+
