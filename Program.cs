@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddSingleton<IEmployersService, EmployersService>();
+builder.Services.AddSingleton<IStartersService, StartersService>();
 
 var app = builder.Build();
 
