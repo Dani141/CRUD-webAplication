@@ -1,16 +1,15 @@
-@page "/employersId/{Id}"
+@page "/employers/{Id}"
 @inject BlazorCRUDApp.Data.IEmployersService EmployersService 
-@inject BlazorCRUDApp.Data.Emmployee Employee
 @inject NavigationManager Navegation
 
 <EditForm Model="employee" OnSubmit="@SubmitForm">
     <div class="form-group">
         <label>Id</label>
-        <input id="Id" class="form-control" name="id" value="@employee.Id" readonly/>
+        <input id="Id" class="form-control" name="Id" value="@employee.Id" readonly/>
     </div>
      <div class="form-group">
         <label>Name</label>
-        <InputText id="Name" class="form-control" name="name"  @bind-Value = "employee.Name"/>
+        <InputText id="Name" class="form-control" name="Name"  @bind-Value = "employee.Name"></InputText>
     </div>
     <button type="submit" class="btn btn-primary">Update</button>
 </EditForm>
@@ -20,14 +19,29 @@
     [Parameter]
     public string Id{ get; set; }
 
-    private BlazorCRUDApp.Data.Emmployee employee{ get; set;}
+    private  BlazorCRUDApp.Data.Emmployee employee{ get; set;}
 
         protected override void OnInitialized()
         {
-           employee = EmployersService.GetEmmployee(Guid.Parse(Id));
+           if (string.IsNullOrEmpty(Id) & Id == "0")
+           {
+            employee=new BlazorCRUDApp.Data.Emmployee();
+           } 
+           else
+           {
+            employee = EmployersService.GetEmmployee(Guid.Parse(Id));
+            }
         }
-        private void SubmitForm(){
-            EmployersService.UpdateEmployee(employee);
+        public void SubmitForm(){
+            if (employee.Id==Guid.Empty)
+            {
+                EmployersService.AddEmployee(employee);
+            }
+            else
+            {
+               EmployersService.UpdateEmployee(employee); 
+            }
+            
             Navegation.NavigateTo("employers");
         }
 

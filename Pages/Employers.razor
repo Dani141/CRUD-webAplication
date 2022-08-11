@@ -3,14 +3,17 @@
 
 <h3>Employers</h3>
 <br/>
+<a href="employers/0">
+    Add
+</a>
 <table class="table">
-    <head>
+    <thead>
         <tr>
             <td>ID</td>
             <td>Name</td>
             <td></td>
         </tr>
-    </head>
+    </thead>
     <tbody>
         @foreach (var e in employersList)
         {
@@ -18,9 +21,12 @@
             <td>@e.Id</td>
             <td>@e.Name</td>
             <td>
-                <a href="employersId/@e.Id">
+                <a href="employers/@e.Id">
                 Edit
                 </a>
+            </td>
+            <td>
+                <button class="btn btn-primary" @onclick=@(a => OnDelete(e.Id))>Delete</button>
             </td>
         </tr>
         }
@@ -33,6 +39,9 @@
         protected override void OnInitialized()
         {
             employersList = EmployersService.GetEmmployees();
+        }
+        private void OnDelete(Guid id){
+            EmployersService.DeleteEmployee(id);
         }
         
 

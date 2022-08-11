@@ -8,5 +8,9 @@ namespace BlazorCRUDApp.Data
 
        public void UpdateEmployee(Emmployee em);
 
+       public void AddEmployee(Emmployee em);
+
+       public void DeleteEmployee(Guid id);
+
     }
 }
