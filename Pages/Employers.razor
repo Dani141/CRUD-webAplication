@@ -3,19 +3,25 @@
 
 <h3>Employers</h3>
 <br/>
-<table>
+<table class="table">
     <head>
         <tr>
             <td>ID</td>
             <td>Name</td>
+            <td></td>
         </tr>
     </head>
     <tbody>
-        @foreach (var e in employers)
+        @foreach (var e in employersList)
         {
             <tr>
             <td>@e.Id</td>
             <td>@e.Name</td>
+            <td>
+                <a href="employersId/@e.Id">
+                Edit
+                </a>
+            </td>
         </tr>
         }
     </tbody>
@@ -23,14 +29,13 @@
 
 </table>
 @code{
-        private List<BlazorCRUDApp.Data.Emmployee> employers;
+        private List<BlazorCRUDApp.Data.Emmployee> employersList;
         protected override void OnInitialized()
         {
-            employers = EmployersService.GetEmmployees();
+            employersList = EmployersService.GetEmmployees();
         }
+        
 
 }
-#pragma warning restore 1998
-#nullable restore
-#line 5 "d:/Daniela/Top Gun Lab .NET/CRUD-webAplication/Pages/Employers.razor"
+
 

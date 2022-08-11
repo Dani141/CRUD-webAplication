@@ -13,9 +13,20 @@ namespace BlazorCRUDApp.Data
         },
        } ;
 
+        public Emmployee GetEmmployee(Guid id)
+        {
+            return emmployees.SingleOrDefault(x=>x.Id==id);
+        }
+
         public List<Emmployee> GetEmmployees()
         {
             return emmployees;
+        }
+
+        public void UpdateEmployee(Emmployee em)
+        {
+            var getOld=GetEmmployee(em.Id);
+            getOld.Name=em.Name;
         }
     }
 }

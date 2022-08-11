@@ -4,5 +4,9 @@ namespace BlazorCRUDApp.Data
     {
        public List<Emmployee> GetEmmployees();
 
+       public Emmployee GetEmmployee(Guid id);
+
+       public void UpdateEmployee(Emmployee em);
+
     }
 }
