@@ -18,6 +18,7 @@
     <tbody>
         @foreach (var strs in startersList)
         {
+            var localVar=strs.Id;
             <tr>
             <td>@strs.Id</td>
             <td>@strs.Name</td>
@@ -28,7 +29,7 @@
                 </a>
             </td>
             <td>
-                <button class="btn btn-primary" @onclick=@(e => OnDelete(strs.Id))>Delete</button>
+                <button type="button" class="btn btn-primary" @onclick= "@(()=> OnDelete(localVar))">Delete</button>
             </td>
         </tr>
         }
