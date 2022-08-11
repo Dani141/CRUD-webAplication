@@ -15,18 +15,18 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var e in employersList)
+        @foreach (var emp in employersList)
         {
             <tr>
-            <td>@e.Id</td>
-            <td>@e.Name</td>
+            <td>@emp.Id</td>
+            <td>@emp.Name</td>
             <td>
-                <a href="employers/@e.Id">
+                <a href="employers/@emp.Id">
                 Edit
                 </a>
             </td>
             <td>
-                <button class="btn btn-primary" @onclick=@(a => OnDelete(e.Id))>Delete</button>
+                <button class="btn btn-primary" @onclick=@(e => OnDelete(emp.Id))>Delete</button>
             </td>
         </tr>
         }
