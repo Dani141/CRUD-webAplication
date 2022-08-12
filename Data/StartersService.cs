@@ -40,7 +40,8 @@ namespace BlazorCRUDApp.Data
 
         public void UpdateStarters(Starters starters)
         {
-            var getOld = GetStartersByID(starters.Id);
+            Starters getOld = new Starters();
+            getOld = GetStartersByID(starters.Id);
             getOld.Name = starters.Name;
             getOld.Price=starters.Price;
         }

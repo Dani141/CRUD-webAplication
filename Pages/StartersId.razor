@@ -19,7 +19,9 @@
     [Parameter]
     public string Id{ get; set; }="";
 
-    private  BlazorCRUDApp.Data.Starters strs{ get; set;} = new BlazorCRUDApp.Data.Starters();
+    private  BlazorCRUDApp.Data.Starters Strs = new BlazorCRUDApp.Data.Starters();
+    public BlazorCRUDApp.Data.Starters strs { get => Strs; set => Strs = value; }
+
 
         protected override void OnInitialized()
         {

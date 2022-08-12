@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using CRUD_webAplication.Data;
 using BlazorCRUDApp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,8 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddSingleton<IDessertsService, DessertsService>();
 builder.Services.AddSingleton<IStartersService, StartersService>();
+builder.Services.AddSingleton<IDrinksService, DrinksService>();
+builder.Services.AddSingleton<IPrincipalDishService, PrincipalDishService >();
+
+
 
 var app = builder.Build();
 

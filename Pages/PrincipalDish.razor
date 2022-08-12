@@ -1,9 +1,9 @@
-@page "/starters"
-@inject BlazorCRUDApp.Data.IStartersService StartersService;
+﻿@page "/principalDish"
+@inject BlazorCRUDApp.Data.IPrincipalDishService PrincipalDishService;
 
-<h3>Starters</h3>
+<h3>Principal Dish</h3>
 <br/>
-<a href="starters/0">
+<a href="principalDish/0">
     Add
 </a>
 <table class="table">
@@ -16,15 +16,15 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var strs in startersList)
+        @foreach (var pDish in principalDishList)
         {
-            var localVar=strs.Id;
+            var localVar=pDish.Id;
             <tr>
-            <td>@strs.Id</td>
-            <td>@strs.Name</td>
-            <td>@strs.Price</td>
+            <td>@pDish.Id</td>
+            <td>@pDish.Name</td>
+            <td>@pDish.Price</td>
             <td>
-                <a href="starters/@strs.Id">
+                <a href="principalDish/@pDish.Id">
                 Edit
                 </a>
             </td>
@@ -38,13 +38,13 @@
 
 </table>
 @code{
-        private List<BlazorCRUDApp.Data.Starters> startersList;
+        private List<BlazorCRUDApp.Data.PrincipalDish> principalDishList;
         protected override void OnInitialized()
         {
-            startersList = StartersService.GetStarters();
+            principalDishList =PrincipalDishService.GetPrincipalDish();
         }
         private void OnDelete(Guid id){
-            StartersService.DeleteStarters(id);
+            PrincipalDishService.DeletePrincipalDish(id);
         }
         
 

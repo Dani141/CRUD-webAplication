@@ -1,0 +1,50 @@
+@page "/desserts/{Id}"
+@inject BlazorCRUDApp.Data.IDessertsService DessertsService
+@inject NavigationManager Navegation
+
+<EditForm Model="@dets" OnSubmit="@SubmitForm">
+    <div class="form-group">
+        <label>Id</label>
+        <input id="Id" class="form-control" name="Id" value="@dets.Id" readonly/>
+    </div>
+     <div class="form-group">
+        <label>Name</label>
+        <InputText id="Name" class="form-control" name="Name"  @bind-Value = "dets.Name"></InputText>
+    </div>
+    <button style="margin-top: 1.5%;" type="submit" class="btn btn-primary">Update</button>
+</EditForm>
+
+
+@code{
+    [Parameter]
+    public string Id{ get; set; }="";
+
+    private  BlazorCRUDApp.Data.Desserts dets{ get; set;} = new BlazorCRUDApp.Data.Desserts();
+
+        protected override void OnInitialized()
+        {
+           if (string.IsNullOrEmpty(Id) || Id == "0")
+           {
+            dets=new BlazorCRUDApp.Data.Desserts();
+            dets.Id=Guid.NewGuid();
+           } 
+           else
+           {
+            dets = DessertsService.GetDessertsByID(Guid.Parse(Id));
+            }
+        }
+        public void SubmitForm(){
+            if (dets.Id==Guid.Empty)
+            {
+                DessertsService.AddDesserts(dets);
+            }
+            else
+            {
+               DessertsService.UpdateDesserts(dets); 
+            }
+            
+            Navegation.NavigateTo("desserts");
+        }
+
+}
+
