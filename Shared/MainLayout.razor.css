@@ -9,7 +9,7 @@ main {
 }
 
 .sidebar {
-    background-image: url(https://i.pinimg.com/736x/15/fc/83/15fc836336d054207e2d7e20517480f8.jpg);
+    background-image: url("https://i.pinimg.com/736x/15/fc/83/15fc836336d054207e2d7e20517480f8.jpg");
     background-size: calc(100% - 1330px);
 }
 
